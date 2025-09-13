@@ -19,6 +19,11 @@ app.get('/', function(req, res) {
   res.sendFile(absolutePath);
 });
 
+// Nueva ruta API que devuelve JSON
+app.get('/json', function(req, res) {
+  res.json({"message": "Hello json"});
+});
+
 
 module.exports = app;
 

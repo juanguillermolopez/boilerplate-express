@@ -1,3 +1,4 @@
+require('dotenv').config()
 let express = require('express');
 let app = express();
 
@@ -17,12 +18,22 @@ app.use('/public', express.static(__dirname + '/public'));
 app.get('/', function(req, res) {
   const absolutePath = __dirname + '/views/index.html';
   res.sendFile(absolutePath);
+
+    // Ruta para API JSON con lógica condicional
+    app.get('/json', function(req, res) {
+    let message = "Hello json";
+    
+    // Verificar la variable de entorno DENTRO del route handler
+    if (process.env.MESSAGE_STYLE === "uppercase") {
+        message = message.toUpperCase();
+    }
+
+    res.json({"message": message});
+    
 });
 
-// Nueva ruta API que devuelve JSON
-app.get('/json', function(req, res) {
-  res.json({"message": "Hello json"});
-});
+
+
 
 
 module.exports = app;

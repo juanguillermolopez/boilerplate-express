@@ -11,12 +11,11 @@ app.get('/', function(req, res) {
   res.sendFile(__dirname + '/views/index.html');
 });
 
-// Ruta para API JSON con lógica condicional
 app.get('/json', function(req, res) {
   let message = "Hello json";
+  const messageStyle = process.env.MESSAGE_STYLE || ''; // Valor por defecto
   
-  // Verificar la variable de entorno DENTRO del route handler
-  if (process.env.MESSAGE_STYLE === "uppercase") {
+  if (messageStyle.toLowerCase() === "uppercase") {
     message = message.toUpperCase();
   }
   

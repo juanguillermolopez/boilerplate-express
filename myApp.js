@@ -10,6 +10,9 @@ console.log("Hello World");
 // });
 
 
+// Middleware para servir archivos estáticos desde la carpeta /public
+app.use('/public', express.static(__dirname + '/public'));
+
 // Nueva solución que envía el archivo HTML:
 app.get('/', function(req, res) {
   const absolutePath = __dirname + '/views/index.html';
